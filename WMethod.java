@@ -347,6 +347,7 @@ public class WMethod{
     }
      return testCases;
    }// End generateTests.
+
    
    /* 
    Driver for the W-algorithm.
@@ -382,13 +383,30 @@ public class WMethod{
      Utilities.printAllTestCases(tests); // Print tests.
      
      // Nicholas Visalli - Task 1 code
+     String[] methods = new String[200];
      Iterator<String> itr = tests.iterator();
+     int x = 0; 
      while(itr.hasNext()){
-    	 	 String currentTest = itr.next(); 
+    	 	 String i = itr.next(); 
+    	 	 String currentTest = i; 
          currentTest = currentTest.replace("", " ").trim();
-         Utilities.runFSM(FSM, 1, currentTest, " ");
+         String pattern = Utilities.runFSM(FSM, 1, currentTest, " ");
+         String currentTestMethod = "public void testCase" + i + "(){";
+	 	 System.out.println("public void testCase" + i + "(){");
+         if (pattern.contains("yes")) {
+        	 	currentTestMethod += "assertTrue(bond.bondRegex("+ "\"" + i + "\"" + "));}"; 
+         } else { 
+        	 	currentTestMethod += "assertFalse(bond.bondRegex(" + " \" " + i + " \" " + "));}";
+         }
+         
+         methods[x] = currentTestMethod; 
+         x++; 
      }
      
+     System.out.println("*****Test Methods*****");
+     for (int i=0; i < methods.length; i++) { 
+    	 	System.out.println(methods[i]);
+     }
    }// End of main()
    
 }//End of class WMethod

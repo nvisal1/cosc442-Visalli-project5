@@ -14,7 +14,7 @@ public class pTableManager{
   public pTable[] tableArray;
   public State[] FSMArray;
   public int currentNumberOfGroups;
-  public static int maxTables = 50;
+  public static int maxTables = 76;
   public int numberOfStates;
   public Vector  W;
   public int tableCount;
@@ -56,7 +56,6 @@ public class pTableManager{
     
     
     while(currentNumberOfGroups < numberOfStates){
-      tableArray[count] = firstTable.getPNext().returnCopy();
       currentNumberOfGroups = tableArray[count].numGroups;
       Utilities.debugPtable("Current Number Of Groups:" + currentNumberOfGroups);
       Utilities.debugPtable("Number of States:" + numberOfStates);
